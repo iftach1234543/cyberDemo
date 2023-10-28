@@ -21,7 +21,7 @@ MSG1= "My bounty is as boundless as the sea, My love as deep; " \
 INC1 = "48,96,98,13,36,92,35,91,96,98,30,90,98,12,90,98,13,36,92,35,15,33,16,90,90,98,12,90," \
        "98,91,19,16,98,90,16,12,99,98,48,96,98,33,36,93,16,98,12,90,98,15,16,16,37,101,98,91,19,16,98" \
        ",34,36,39,16,98,44,98,18,30,93,16,98,91,36,98,91,19,16,16,99,98,65,19,16,98,34,36,39,16,98,44,98" \
-       ",19,12,93,16,99,98,17,36,39,98,13,36,91,19,98,12,39,16,98,30,35,17,30,35,30,91,16,100,"
+       ",19,12,93,16,99,98,17,36,39,98,13,36,91,19,98,12,39,16,98,30,35,17,30,35,30,91,16,100"
 
 INPUT_CHAR = {'A':56, 'B':57, 'C':58, 'D':59, 'E':40, 'F':41, 'G':42, 'H':43, 'I':44, 'J':45,
                   'K':46, 'L':47, 'M':48, 'N':49, 'O':60, 'P':61, 'Q':62, 'R':63, 'S':64, 'T':65,
@@ -44,12 +44,13 @@ def isvalid():
 
 def incript():
     my_str = input('write a messege')
-    logging.DEBUG('write a messege' + my_str)
+    logging.debug('write a messege' + my_str)
     str1 = ""
     for i in my_str:
         str1 += INPUT_CHAR[i]
         str1 += ','
-    logging.DEBUG(str1)
+    str1 -= ','
+    logging.debug(str1)
     file = open("encrypted_msg.txt", 'w')
     file.write(str1)
     file.close()
@@ -72,8 +73,8 @@ def decript():
             declist.append(OUTPUT_CHAR[j])
     print(declist)
 def main():
-    logging.DEBUG(INPUT_CHAR)
-    logging.DEBUG(OUTPUT_CHAR)
+    logging.debug(INPUT_CHAR)
+    logging.debug(OUTPUT_CHAR)
     if (sys.argv[1]== 'encrypt'):
         incript()
     elif (sys.argv[1]== 'decrypt'):
@@ -88,7 +89,6 @@ def main():
 if __name__ == '__main__':
     assert isvalid()
     assert incriptAssert(MSG1) == INC1
-
     if not os.path.isdir(LOG_DIR):
         os.makedirs(LOG_DIR)
     logging.basicConfig(format=LOG_FORMAT, filename=LOG_FILE, level=LOG_LEVEL)
