@@ -44,10 +44,12 @@ def isvalid():
 
 def incript():
     my_str = input('write a messege')
+    logging.DEBUG('write a messege' + my_str)
     str1 = ""
     for i in my_str:
         str1 += INPUT_CHAR[i]
         str1 += ','
+    logging.DEBUG(str1)
     file = open("encrypted_msg.txt", 'w')
     file.write(str1)
     file.close()
@@ -70,6 +72,8 @@ def decript():
             declist.append(OUTPUT_CHAR[j])
     print(declist)
 def main():
+    logging.DEBUG(INPUT_CHAR)
+    logging.DEBUG(OUTPUT_CHAR)
     if (sys.argv[1]== 'encrypt'):
         incript()
     elif (sys.argv[1]== 'decrypt'):
